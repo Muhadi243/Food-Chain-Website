@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rantai Makanan — Food Chain Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- SCREEN: MENU UTAMA -->
+<div id="screen-menu" class="screen active">
+  <div class="menu-bg">
+    <div class="floating-orbs">
+      <span class="orb orb-1"></span>
+      <span class="orb orb-2"></span>
+      <span class="orb orb-3"></span>
+    </div>
+  </div>
+  <div class="menu-content">
+    <div class="logo-area">
+      <div class="logo-icon">🌿</div>
+      <h1 class="game-title">Rantai<br/><em>Makanan</em></h1>
+      <p class="game-subtitle">Susun rantai makanan yang benar,<br/>jaga keseimbangan ekosistem!</p>
+    </div>
+    <div class="menu-buttons">
+      <button class="btn-primary" onclick="showLevelSelect()">Mulai Bermain</button>
+      <button class="btn-secondary" onclick="showHowToPlay()">Cara Bermain</button>
+    </div>
+    <div class="ecosystem-badge">
+      <span>🌊 Laut</span>
+      <span>🌳 Hutan</span>
+      <span>🏜️ Padang</span>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN: CARA BERMAIN -->
+<div id="screen-howto" class="screen">
+  <div class="howto-container">
+    <h2>Cara Bermain</h2>
+    <div class="howto-steps">
+      <div class="step">
+        <div class="step-icon">👆</div>
+        <div class="step-text">
+          <strong>Klik & Seret</strong>
+          <p>Seret organisme dari panel ke slot rantai makanan yang kosong</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-icon">🔗</div>
+        <div class="step-text">
+          <strong>Susun Urutan</strong>
+          <p>Dari produsen → konsumen primer → konsumen puncak. Urutan harus benar!</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-icon">⚖️</div>
+        <div class="step-text">
+          <strong>Jaga Keseimbangan</strong>
+          <p>Setiap organisme memakan yang di bawahnya. Salah urutan = ekosistem rusak</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-icon">⭐</div>
+        <div class="step-text">
+          <strong>Raih Bintang</strong>
+          <p>Selesaikan semua level untuk membuka ekosistem baru!</p>
+        </div>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="showMenu()">Mengerti!</button>
+  </div>
+</div>
+
+<!-- SCREEN: PILIH LEVEL -->
+<div id="screen-levels" class="screen">
+  <div class="levels-container">
+    <button class="back-btn" onclick="showMenu()">← Kembali</button>
+    <h2>Pilih Ekosistem</h2>
+    <div class="level-grid" id="level-grid"></div>
+  </div>
+  <button class="btn-reset-progress" onclick="confirmResetProgress()" title="Reset semua progress">
+    🗑️ Reset Progress
+  </button>
+</div>
+
+<!-- SCREEN: GAME -->
+<div id="screen-game" class="screen">
+  <div class="game-hud">
+    <button class="hud-back" onclick="confirmBack()">←</button>
+    <div class="hud-info">
+      <span class="hud-level" id="hud-level-name">Level 1</span>
+    </div>
+    <div class="hud-score">
+      <span class="score-label">Poin</span>
+      <span class="score-val" id="hud-score">0</span>
+    </div>
+  </div>
+
+  <div class="game-main">
+    <!-- Panel kiri: organisme tersedia -->
+    <div class="organism-panel" id="organism-panel">
+      <div class="panel-title">Organisme</div>
+      <div class="organism-list" id="organism-list"></div>
+    </div>
+
+    <!-- Area tengah: canvas rantai makanan -->
+    <div class="chain-area">
+      <div class="level-desc" id="level-desc"></div>
+      <div class="chain-container" id="chain-container"></div>
+      <div class="chain-legend">
+        <span class="legend-item producer">🌱 Produsen</span>
+        <span class="legend-item consumer1">🐛 Konsumen I</span>
+        <span class="legend-item consumer2">🐸 Konsumen II</span>
+        <span class="legend-item apex">🦅 Konsumen Puncak</span>
+      </div>
+      <button class="btn-check" id="btn-check" onclick="checkAnswer()">Periksa Rantai →</button>
+    </div>
+
+    <!-- Panel kanan: info organisme -->
+    <div class="info-panel" id="info-panel">
+      <div class="panel-title">Info</div>
+      <div class="info-content" id="info-content">
+        <div class="info-placeholder">
+          <span>👆</span>
+          <p>Klik organisme untuk melihat informasinya</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN: HASIL -->
+<div id="screen-result" class="screen">
+  <div class="result-container" id="result-container"></div>
+</div>
+
+<!-- MODAL FEEDBACK -->
+<div id="feedback-modal" class="modal hidden">
+  <div class="modal-box" id="modal-box"></div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
