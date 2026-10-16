@@ -28,12 +28,350 @@
     </div>
     <div class="menu-buttons">
       <button class="btn-primary" onclick="showLevelSelect()">Mulai Bermain</button>
+      <button class="btn-secondary" onclick="showModule()">📖 Materi</button>
       <button class="btn-secondary" onclick="showHowToPlay()">Cara Bermain</button>
     </div>
     <div class="ecosystem-badge">
       <span>🌊 Laut</span>
       <span>🌳 Hutan</span>
       <span>🏜️ Padang</span>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN: MODUL MATERI -->
+<div id="screen-module" class="screen">
+  <div class="module-container">
+    <button class="back-btn" onclick="showMenu()">← Kembali</button>
+    <div class="module-header">
+      <div class="module-header-icon">📚</div>
+      <h2>Belajar Rantai Makanan</h2>
+      <p>Yuk, kenali siapa makan siapa di alam! 🌿</p>
+    </div>
+
+    <div class="module-tabs" id="module-tabs">
+      <button class="module-tab active" onclick="switchTab('pengertian')">Apa Itu?</button>
+      <button class="module-tab" onclick="switchTab('tingkatan')">Siapa Saja?</button>
+      <button class="module-tab" onclick="switchTab('ekosistem')">Di Mana?</button>
+      <button class="module-tab" onclick="switchTab('fakta')">Seru! 🤩</button>
+    </div>
+
+    <!-- TAB: PENGERTIAN -->
+    <div class="module-tab-content active" id="tab-pengertian">
+      <div class="module-card highlight-card">
+        <div class="module-card-tag">Modul 1</div>
+        <div class="module-card-icon">🔗</div>
+        <h3>Apa Itu Rantai Makanan?</h3>
+        <p>Rantai makanan adalah urutan <strong>siapa yang makan siapa</strong> di alam. Misalnya, rumput dimakan kelinci, kelinci dimakan elang. Setiap hewan punya peran yang berbeda.</p>
+        <ul class="module-card-list">
+          <li>Tumbuhan bisa membuat makanannya sendiri.</li>
+          <li>Hewan memakan tumbuhan atau hewan lain.</li>
+          <li>Energi berpindah dari satu makhluk ke makhluk berikutnya.</li>
+        </ul>
+      </div>
+
+      <div class="module-card">
+        <div class="module-card-tag">Modul 2</div>
+        <div class="module-card-icon">☀️</div>
+        <h3>Semua Dimulai dari Matahari</h3>
+        <p>Matahari memberi energi untuk tumbuhan. Tumbuhan memakai sinar matahari, air, dan udara untuk membuat makanan. Tanpa matahari, tumbuhan tidak bisa tumbuh dengan baik.</p>
+        <ul class="module-card-list">
+          <li>Matahari = sumber energi utama.</li>
+          <li>Tumbuhan = pembuat makanan.</li>
+          <li>Hewan mendapat energi dari tumbuhan atau hewan lain.</li>
+        </ul>
+      </div>
+
+      <div class="module-card">
+        <div class="module-card-tag">Modul 3</div>
+        <div class="module-card-icon">⚖️</div>
+        <h3>Kenapa Rantai Makanan Penting?</h3>
+        <p>Semua makhluk hidup saling bergantung. Kalau satu jenis hewan berkurang, hewan lain juga ikut berubah. Jadi, alam harus tetap seimbang agar semua hidup dengan baik.</p>
+        <ul class="module-card-list">
+          <li>Setiap makhluk punya tugas di alam.</li>
+          <li>Kalau satu hilang, keseimbangan bisa rusak.</li>
+          <li>Alam bekerja seperti satu tim besar.</li>
+        </ul>
+      </div>
+
+      <div class="module-tipbox">
+        <div class="tipbox-icon">💡</div>
+        <div class="tipbox-text"><strong>Ingat gampangnya:</strong> Rantai makanan = urutan makan dan dimakan, mulai dari tumbuhan sampai hewan terkuat.</div>
+      </div>
+
+      <div class="module-diagram">
+        <div class="diagram-title">Contoh Rantai Makanan Sederhana</div>
+        <div class="diagram-flow">
+          <div class="diagram-node producer">
+            <span class="diagram-emoji">🌱</span>
+            <span class="diagram-label">Tumbuhan</span>
+          </div>
+          <span class="diagram-arrow">→</span>
+          <div class="diagram-node consumer1">
+            <span class="diagram-emoji">🐛</span>
+            <span class="diagram-label">Ulat</span>
+          </div>
+          <span class="diagram-arrow">→</span>
+          <div class="diagram-node consumer2">
+            <span class="diagram-emoji">🐸</span>
+            <span class="diagram-label">Katak</span>
+          </div>
+          <span class="diagram-arrow">→</span>
+          <div class="diagram-node apex">
+            <span class="diagram-emoji">🦅</span>
+            <span class="diagram-label">Elang</span>
+          </div>
+        </div>
+        <div class="diagram-caption">Tumbuhan dimakan ulat → ulat dimakan katak → katak dimakan elang</div>
+      </div>
+    </div>
+
+    <!-- TAB: TINGKATAN -->
+    <div class="module-tab-content" id="tab-tingkatan">
+      <div class="module-level-card producer-card">
+        <div class="module-level-header">
+          <span class="module-level-badge">Kelompok 1</span>
+          <span class="module-level-emoji">🌱</span>
+        </div>
+        <h3>Produsen — Si Pembuat Makanan</h3>
+        <p>Tumbuhan bisa membuat makanannya <strong>sendiri</strong> menggunakan sinar matahari, air, dan udara. Mereka tidak perlu makan hewan lain. Makanya, tumbuhan selalu ada di urutan pertama rantai makanan!</p>
+        <div class="module-examples">
+          <span>🌿 Rumput</span>
+          <span>🌳 Pohon</span>
+          <span>🌾 Padi</span>
+          <span>🌱 Ganggang</span>
+        </div>
+      </div>
+
+      <div class="module-level-card consumer1-card">
+        <div class="module-level-header">
+          <span class="module-level-badge">Kelompok 2</span>
+          <span class="module-level-emoji">🐛</span>
+        </div>
+        <h3>Konsumen 1 — Pemakan Tumbuhan</h3>
+        <p>Hewan-hewan ini hanya makan tumbuhan. Mereka sering disebut <strong>herbivora</strong>. Mereka tidak makan daging sama sekali — cukup rumput, daun, atau biji-bijian setiap hari.</p>
+        <div class="module-examples">
+          <span>🦓 Zebra</span>
+          <span>🐛 Ulat</span>
+          <span>🦌 Rusa</span>
+          <span>🐰 Kelinci</span>
+        </div>
+      </div>
+
+      <div class="module-level-card consumer2-card">
+        <div class="module-level-header">
+          <span class="module-level-badge">Kelompok 3</span>
+          <span class="module-level-emoji">🐸</span>
+        </div>
+        <h3>Konsumen 2 — Pemakan Hewan Kecil</h3>
+        <p>Hewan ini memakan hewan dari kelompok 2. Mereka sudah bisa memakan daging. Contohnya katak yang memakan ulat, atau ular yang memakan katak.</p>
+        <div class="module-examples">
+          <span>🐸 Katak</span>
+          <span>🐟 Ikan Kecil</span>
+          <span>🐆 Cheetah</span>
+          <span>🐡 Ikan Gabus</span>
+        </div>
+      </div>
+
+      <div class="module-level-card apex-card">
+        <div class="module-level-header">
+          <span class="module-level-badge">Kelompok 4</span>
+          <span class="module-level-emoji">🦅</span>
+        </div>
+        <h3>Konsumen Puncak — Sang Raja!</h3>
+        <p>Hewan ini ada di urutan teratas. <strong>Tidak ada hewan lain yang berani memakannya!</strong> Mereka menjaga agar hewan-hewan di bawahnya tidak terlalu banyak. Kalau tidak ada mereka, ekosistem bisa rusak.</p>
+        <div class="module-examples">
+          <span>🦅 Elang</span>
+          <span>🦈 Hiu</span>
+          <span>🦁 Singa</span>
+          <span>🐊 Buaya</span>
+        </div>
+      </div>
+
+      <div class="module-level-card decomposer-card">
+        <div class="module-level-header">
+          <span class="module-level-badge">Peran Spesial</span>
+          <span class="module-level-emoji">🍄</span>
+        </div>
+        <h3>Pengurai — Petugas Kebersihan Alam!</h3>
+        <p>Ketika hewan atau tumbuhan mati, siapa yang membersihkannya? Pengurai! Jamur dan bakteri menguraikan tubuh yang sudah mati dan mengubahnya menjadi <strong>pupuk alami</strong> agar tanah tetap subur untuk tumbuhan baru.</p>
+        <div class="module-examples">
+          <span>🍄 Jamur</span>
+          <span>🪱 Cacing</span>
+          <span>🦠 Bakteri</span>
+        </div>
+      </div>
+
+      <div class="module-tipbox">
+        <div class="tipbox-icon">🧠</div>
+        <div class="tipbox-text"><strong>Cara mudah mengingatnya:</strong> Tumbuhan → Pemakan tumbuhan → Pemakan daging → Raja hutan → Pengurai → kembali ke tumbuhan. Berputar terus!</div>
+      </div>
+    </div>
+
+    <!-- TAB: EKOSISTEM -->
+    <div class="module-tab-content" id="tab-ekosistem">
+      <p class="module-eco-intro">Rantai makanan ada di mana-mana! Di hutan, di laut, di padang rumput — masing-masing punya "siapa makan siapa" yang berbeda. Yuk lihat contohnya!</p>
+
+      <div class="module-eco-card">
+        <div class="module-eco-banner forest-banner">🌳 Hutan Tropis</div>
+        <div class="module-eco-body">
+          <p>Di hutan yang lebat dan lembap, banyak sekali hewan yang hidup berdampingan. Pohon-pohon tinggi memberi makan bagi banyak hewan kecil, dan hewan kecil menjadi makanan hewan yang lebih besar.</p>
+          <div class="module-chain-preview">
+            <div class="chain-preview-item">
+              <span class="cp-emoji">🍃</span>
+              <span class="cp-name">Daun</span>
+            </div>
+            <span class="chain-sep">→<br/><span class="chain-sep-label">dimakan</span></span>
+            <div class="chain-preview-item">
+              <span class="cp-emoji">🐛</span>
+              <span class="cp-name">Ulat</span>
+            </div>
+            <span class="chain-sep">→<br/><span class="chain-sep-label">dimakan</span></span>
+            <div class="chain-preview-item">
+              <span class="cp-emoji">🐸</span>
+              <span class="cp-name">Katak</span>
+            </div>
+            <span class="chain-sep">→<br/><span class="chain-sep-label">dimakan</span></span>
+            <div class="chain-preview-item">
+              <span class="cp-emoji">🦅</span>
+              <span class="cp-name">Elang</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-eco-card">
+        <div class="module-eco-banner ocean-banner">🌊 Laut</div>
+        <div class="module-eco-body">
+          <p>Di dalam laut yang luas, ada makhluk sangat kecil bernama fitoplankton — kamu tidak bisa melihatnya tanpa mikroskop! Tapi mereka sangat penting karena menjadi makanan bagi hewan-hewan laut lainnya.</p>
+          <div class="module-chain-preview">
+            <div class="chain-preview-item">
+              <span class="cp-emoji">🦠</span>
+              <span class="cp-name">Fitoplankton</span>
+            </div>
+            <span class="chain-sep">→<br/><span class="chain-sep-label">dimakan</span></span>
+            <div class="chain-preview-item">
+              <span class="cp-emoji">🦐</span>
+              <span class="cp-name">Zooplankton</span>
+            </div>
+            <span class="chain-sep">→<br/><span class="chain-sep-label">dimakan</span></span>
+            <div class="chain-preview-item">
+              <span class="cp-emoji">🐟</span>
+              <span class="cp-name">Ikan Kecil</span>
+            </div>
+            <span class="chain-sep">→<br/><span class="chain-sep-label">dimakan</span></span>
+            <div class="chain-preview-item">
+              <span class="cp-emoji">🦈</span>
+              <span class="cp-name">Hiu</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-eco-card">
+        <div class="module-eco-banner savanna-banner">🏜️ Padang Sabana</div>
+        <div class="module-eco-body">
+          <p>Padang sabana adalah padang rumput yang sangat luas. Di sini banyak hewan besar yang hidup bersama. Rumput yang tumbuh lebat menjadi makanan bagi ribuan hewan herbivora seperti zebra.</p>
+          <div class="module-chain-preview">
+            <div class="chain-preview-item">
+              <span class="cp-emoji">🌾</span>
+              <span class="cp-name">Rumput</span>
+            </div>
+            <span class="chain-sep">→<br/><span class="chain-sep-label">dimakan</span></span>
+            <div class="chain-preview-item">
+              <span class="cp-emoji">🦓</span>
+              <span class="cp-name">Zebra</span>
+            </div>
+            <span class="chain-sep">→<br/><span class="chain-sep-label">dimakan</span></span>
+            <div class="chain-preview-item">
+              <span class="cp-emoji">🐆</span>
+              <span class="cp-name">Cheetah</span>
+            </div>
+            <span class="chain-sep">→<br/><span class="chain-sep-label">dimakan</span></span>
+            <div class="chain-preview-item">
+              <span class="cp-emoji">🦁</span>
+              <span class="cp-name">Singa</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-eco-card">
+        <div class="module-eco-banner swamp-banner">🌿 Rawa</div>
+        <div class="module-eco-body">
+          <p>Rawa gambut di Indonesia adalah tempat tinggal banyak hewan unik yang tidak ditemukan di tempat lain. Airnya cokelat dan berlumpur, tapi di dalamnya ada kehidupan yang sangat kaya!</p>
+          <div class="module-chain-preview">
+            <div class="chain-preview-item">
+              <span class="cp-emoji">🌱</span>
+              <span class="cp-name">Ganggang</span>
+            </div>
+            <span class="chain-sep">→<br/><span class="chain-sep-label">dimakan</span></span>
+            <div class="chain-preview-item">
+              <span class="cp-emoji">🦀</span>
+              <span class="cp-name">Udang</span>
+            </div>
+            <span class="chain-sep">→<br/><span class="chain-sep-label">dimakan</span></span>
+            <div class="chain-preview-item">
+              <span class="cp-emoji">🐡</span>
+              <span class="cp-name">Ikan Gabus</span>
+            </div>
+            <span class="chain-sep">→<br/><span class="chain-sep-label">dimakan</span></span>
+            <div class="chain-preview-item">
+              <span class="cp-emoji">🐊</span>
+              <span class="cp-name">Buaya</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: FAKTA SERU -->
+    <div class="module-tab-content" id="tab-fakta">
+      <p class="module-eco-intro">Ini fakta-fakta seru tentang rantai makanan yang bikin kamu bilang "Waaah!" 😲</p>
+
+      <div class="module-fact-card">
+        <div class="fact-emoji">🐺</div>
+        <div class="fact-body">
+          <h3>Serigala Mengubah Aliran Sungai!</h3>
+          <p>Di Amerika, serigala pernah punah dari sebuah taman besar. Rusa jadi sangat banyak dan memakan semua rumput. Sungai pun mulai rusak karena tidak ada tanaman yang menahan tanahnya. Saat serigala dikembalikan, rusa berkurang, tanaman tumbuh lagi, dan sungainya pun kembali sehat! Keren kan, efek satu hewan bisa sebesar itu?</p>
+        </div>
+      </div>
+
+      <div class="module-fact-card">
+        <div class="fact-emoji">🔢</div>
+        <div class="fact-body">
+          <h3>Kenapa Singa Lebih Sedikit dari Zebra?</h3>
+          <p>Dari 100 bagian makanan yang dimakan zebra, hanya sekitar <strong>10 bagian</strong> yang benar-benar menjadi energi tubuh zebra — sisanya hilang jadi panas. Makanya butuh <strong>banyak</strong> zebra untuk menghidupi <strong>sedikit</strong> singa. Itulah kenapa hewan pemangsa selalu jumlahnya lebih sedikit!</p>
+        </div>
+      </div>
+
+      <div class="module-fact-card">
+        <div class="fact-emoji">🕸️</div>
+        <div class="fact-body">
+          <h3>Di Alam, Bukan Rantai tapi Jaring!</h3>
+          <p>Rantai makanan di alam sebenarnya tidak sesederhana garis lurus. Katak bisa memakan ulat <em>dan</em> capung. Elang bisa memakan katak <em>dan</em> ular. Semua saling terhubung seperti jaring laba-laba! Itulah yang disebut <strong>jaring makanan</strong>.</p>
+        </div>
+      </div>
+
+      <div class="module-fact-card">
+        <div class="fact-emoji">🌬️</div>
+        <div class="fact-body">
+          <h3>Fitoplankton Membuat Udara yang Kita Hirup!</h3>
+          <p>Makhluk super kecil di laut bernama fitoplankton menghasilkan <strong>lebih dari separuh oksigen</strong> yang ada di bumi — bahkan lebih banyak dari semua hutan di dunia! Jadi setiap dua napas yang kamu hirup, satu di antaranya berasal dari laut. Jagalah lautan kita!</p>
+        </div>
+      </div>
+
+      <div class="module-fact-card">
+        <div class="fact-emoji">🐊</div>
+        <div class="fact-body">
+          <h3>Buaya Sudah Ada Sejak Zaman Dinosaurus!</h3>
+          <p>Buaya muara yang ada di rantai makanan rawa sudah hidup di bumi selama lebih dari <strong>200 juta tahun</strong>. Mereka berhasil bertahan saat dinosaurus punah! Buaya muara bisa hidup lebih dari 70 tahun dan punya gigitan terkuat di antara semua hewan.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="module-cta">
+      <button class="btn-primary" onclick="showLevelSelect()">Siap Bermain! →</button>
     </div>
   </div>
 </div>

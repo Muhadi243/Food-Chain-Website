@@ -126,6 +126,23 @@ function showScreen(id) {
 function showMenu()        { showScreen("screen-menu"); }
 function showHowToPlay()   { showScreen("screen-howto"); }
 function showLevelSelect() { renderLevelGrid(); showScreen("screen-levels"); }
+function showModule()      { switchTab("pengertian"); showScreen("screen-module"); }
+
+/* ============================
+   MODUL — SWITCH TAB
+   ============================ */
+function switchTab(tabId) {
+  document.querySelectorAll(".module-tab-content").forEach(el => el.classList.remove("active"));
+  document.querySelectorAll(".module-tab").forEach(el => el.classList.remove("active"));
+
+  const content = document.getElementById("tab-" + tabId);
+  if (content) content.classList.add("active");
+
+  const tabs = document.querySelectorAll(".module-tab");
+  const tabOrder = ["pengertian", "tingkatan", "ekosistem", "fakta"];
+  const idx = tabOrder.indexOf(tabId);
+  if (idx !== -1 && tabs[idx]) tabs[idx].classList.add("active");
+}
 
 /* ============================
    LEVEL GRID
