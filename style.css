@@ -1200,3 +1200,393 @@ html, body {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
 }
+
+/* ============================
+   MODE EKSPLORASI
+   ============================ */
+#screen-explore {
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-deep);
+}
+
+/* HUD Eksplorasi */
+.exp-hud {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 20px;
+  background: var(--bg-panel);
+  border-bottom: 1px solid rgba(124, 140, 168, 0.12);
+  flex-shrink: 0;
+  height: 52px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.exp-hud-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--cyan);
+  flex: 1;
+}
+
+.exp-hud-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.exp-ctrl-badge {
+  padding: 3px 10px;
+  background: rgba(138, 183, 255, 0.08);
+  border: 1px solid rgba(138, 183, 255, 0.15);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--cyan);
+}
+
+.exp-ctrl-sep {
+  opacity: 0.3;
+}
+
+/* Area utama eksplorasi */
+.exp-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Wrapper peta */
+.exp-map-wrapper {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.exp-map-scroll {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background:
+    linear-gradient(rgba(138, 183, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(138, 183, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(160deg, #0e1927 0%, #0f1c2d 50%, #0c1824 100%);
+  background-size: 48px 48px, 48px 48px, 100% 100%;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(138, 183, 255, 0.15) transparent;
+}
+
+.exp-map-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+.exp-map-scroll::-webkit-scrollbar-thumb { background: rgba(138, 183, 255, 0.15); border-radius: 4px; }
+
+/* Canvas peta */
+.exp-canvas {
+  position: relative;
+  /* ukuran di-set via JS */
+}
+
+/* Zona ekosistem */
+.exp-zone {
+  position: absolute;
+  border: 2px solid;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.15s;
+  overflow: hidden;
+}
+
+.exp-zone:hover {
+  filter: brightness(1.25);
+  transform: scale(1.02);
+}
+
+.exp-zone-icon {
+  font-size: 28px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+}
+
+.exp-zone-name {
+  font-size: 11px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  padding: 0 6px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+  line-height: 1.2;
+}
+
+.exp-zone-check {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--green-light);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
+
+.exp-zone-done {
+  filter: saturate(0.7) brightness(0.85);
+}
+
+.exp-zone-done::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(127, 225, 182, 0.06);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Karakter pemain */
+.exp-char {
+  position: absolute;
+  font-size: 28px;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  transition: left 0.1s, top 0.1s;
+  filter: drop-shadow(0 0 10px rgba(138, 183, 255, 0.7));
+  animation: char-idle 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes char-idle {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50%       { transform: translate(-50%, -52%) scale(1.05); }
+}
+
+/* Popup info zona */
+.exp-popup {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(145deg, #1d2e46, #152438);
+  border: 1px solid rgba(138, 183, 255, 0.2);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  min-width: 240px;
+  max-width: 320px;
+  text-align: center;
+  z-index: 20;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  animation: popup-rise 0.2s ease;
+}
+
+@keyframes popup-rise {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.exp-popup.hidden { display: none; }
+
+.exp-popup-icon { font-size: 36px; margin-bottom: 6px; }
+.exp-popup-name {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.exp-popup-stars {
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: var(--amber);
+  margin-bottom: 6px;
+  min-height: 22px;
+}
+.exp-popup-fact {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.exp-popup-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  width: 100%;
+}
+
+/* Hint Enter */
+.exp-hint {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30, 50, 75, 0.9);
+  border: 1px solid rgba(138, 183, 255, 0.2);
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  z-index: 20;
+  backdrop-filter: blur(4px);
+  animation: hint-pulse 2s ease-in-out infinite;
+}
+
+.exp-hint kbd {
+  background: rgba(138, 183, 255, 0.12);
+  border: 1px solid rgba(138, 183, 255, 0.25);
+  border-radius: 5px;
+  padding: 1px 7px;
+  font-family: monospace;
+  font-size: 12px;
+  color: var(--cyan);
+}
+
+.exp-hint.hidden { display: none; }
+
+@keyframes hint-pulse {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 1; }
+}
+
+/* Legenda */
+.exp-legend {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 8px 16px;
+  background: rgba(12, 22, 38, 0.9);
+  border-top: 1px solid rgba(124, 140, 168, 0.08);
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.exp-legend span {
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(149, 171, 203, 0.06);
+}
+
+/* ============================
+   VIRTUAL JOYSTICK (MOBILE)
+   ============================ */
+.exp-joystick-area {
+  display: none; /* Tampil hanya di mobile via media query */
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(10, 18, 32, 0.92);
+  border-left: 1px solid rgba(124, 140, 168, 0.08);
+  width: 160px;
+  flex-shrink: 0;
+}
+
+.joystick-ring {
+  display: grid;
+  grid-template-columns: 48px 48px 48px;
+  grid-template-rows: 48px 48px 48px;
+  gap: 4px;
+  align-items: center;
+  justify-items: center;
+}
+
+.joy-up    { grid-column: 2; grid-row: 1; }
+.joy-mid-row { grid-column: 1 / 4; grid-row: 2; display: flex; justify-content: space-between; align-items: center; width: 100%; }
+.joy-down  { grid-column: 2; grid-row: 3; }
+
+.joy-btn {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(145deg, #1f3050, #162640);
+  border: 1px solid rgba(138, 183, 255, 0.18);
+  border-radius: 12px;
+  color: var(--cyan);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s, background 0.1s;
+  box-shadow: 5px 5px 10px rgba(2, 6, 14, 0.55), -4px -4px 8px rgba(40, 60, 88, 0.45);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: none;
+}
+
+.joy-btn:active {
+  transform: scale(0.9);
+  background: linear-gradient(145deg, #2a4470, #1e3556);
+}
+
+.joy-center {
+  font-size: 22px;
+  opacity: 0.5;
+}
+
+.joy-action-btn {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #2f4667 0%, #466d9a 100%);
+  color: var(--text);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 5px 5px 12px rgba(2, 6, 14, 0.6), -4px -4px 10px rgba(55, 80, 115, 0.4);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Tampilkan joystick di layar sentuh / mobile */
+@media (max-width: 700px) {
+  .exp-joystick-area {
+    display: flex;
+  }
+
+  .exp-hud-controls {
+    display: none; /* Sembunyikan hint keyboard di mobile */
+  }
+
+  .exp-popup {
+    bottom: 8px;
+    min-width: 180px;
+    max-width: 220px;
+    padding: 12px 14px;
+    font-size: 12px;
+  }
+
+  .exp-popup-icon { font-size: 28px; }
+  .exp-popup-name { font-size: 14px; }
+
+  .exp-legend {
+    font-size: 11px;
+    gap: 5px;
+    padding: 6px 10px;
+  }
+}
+
+/* Btn Explore di menu */
+.btn-explore {
+  background: linear-gradient(135deg, #1e4038 0%, #2e6b58 100%);
+  box-shadow: 10px 10px 20px rgba(2, 6, 14, 0.66), -8px -8px 18px rgba(50, 100, 80, 0.3);
+}
+.btn-explore:hover {
+  box-shadow: 12px 12px 24px rgba(2, 6, 14, 0.7), -8px -8px 18px rgba(50, 100, 80, 0.38);
+}
+
+/* Difficulty badge di level card */
+.level-difficulty {
+  font-size: 11px;
+  font-weight: 800;
+  margin-top: 4px;
+}

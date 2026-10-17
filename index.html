@@ -28,6 +28,7 @@
     </div>
     <div class="menu-buttons">
       <button class="btn-primary" onclick="showLevelSelect()">Mulai Bermain</button>
+      <button class="btn-primary btn-explore" onclick="showExplore()">🗺️ Mode Eksplorasi</button>
       <button class="btn-secondary" onclick="showModule()">📖 Materi</button>
       <button class="btn-secondary" onclick="showHowToPlay()">Cara Bermain</button>
     </div>
@@ -35,6 +36,8 @@
       <span>🌊 Laut</span>
       <span>🌳 Hutan</span>
       <span>🏜️ Padang</span>
+      <span>⛰️ Gunung</span>
+      <span>🧊 Arktik</span>
     </div>
   </div>
 </div>
@@ -406,7 +409,14 @@
         <div class="step-icon">⭐</div>
         <div class="step-text">
           <strong>Raih Bintang</strong>
-          <p>Selesaikan semua level untuk membuka ekosistem baru!</p>
+          <p>Selesaikan semua 10 level untuk membuka semua ekosistem!</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-icon">🗺️</div>
+        <div class="step-text">
+          <strong>Mode Eksplorasi</strong>
+          <p>Jelajahi peta dunia menggunakan <kbd>WASD</kbd> / tombol panah (PC) atau joystick virtual (HP). Dekati zona untuk membuka level!</p>
         </div>
       </div>
     </div>
@@ -480,6 +490,59 @@
 <!-- MODAL FEEDBACK -->
 <div id="feedback-modal" class="modal hidden">
   <div class="modal-box" id="modal-box"></div>
+</div>
+
+<!-- SCREEN: EKSPLORASI -->
+<div id="screen-explore" class="screen">
+  <!-- HUD eksplorasi -->
+  <div class="exp-hud">
+    <button class="hud-back" onclick="showMenu()">←</button>
+    <div class="exp-hud-title">🗺️ Mode Eksplorasi</div>
+    <div class="exp-hud-controls">
+      <span class="exp-ctrl-badge">WASD / ↑↓←→</span>
+      <span class="exp-ctrl-sep">|</span>
+      <span class="exp-ctrl-badge">Enter = Aksi</span>
+    </div>
+  </div>
+
+  <!-- Area peta utama -->
+  <div class="exp-main">
+    <!-- Peta scroll -->
+    <div class="exp-map-wrapper">
+      <div class="exp-map-scroll" id="exp-map-scroll">
+        <div class="exp-canvas" id="explore-canvas"></div>
+      </div>
+
+      <!-- Popup info zona (muncul saat dekat) -->
+      <div class="exp-popup hidden" id="explore-popup"></div>
+
+      <!-- Hint kontrol -->
+      <div class="exp-hint hidden" id="explore-hint">
+        Tekan <kbd>Enter</kbd> atau <kbd>Spasi</kbd> untuk masuk
+      </div>
+    </div>
+
+    <!-- Virtual joystick (mobile) -->
+    <div class="exp-joystick-area">
+      <div class="joystick-ring">
+        <button class="joy-btn joy-up"    ontouchstart="startJoystick({dx:0,dy:-1})" ontouchend="stopJoystick()" onmousedown="startJoystick({dx:0,dy:-1})" onmouseup="stopJoystick()">▲</button>
+        <div class="joy-mid-row">
+          <button class="joy-btn joy-left"  ontouchstart="startJoystick({dx:-1,dy:0})" ontouchend="stopJoystick()" onmousedown="startJoystick({dx:-1,dy:0})" onmouseup="stopJoystick()">◀</button>
+          <div class="joy-center">🧒</div>
+          <button class="joy-btn joy-right" ontouchstart="startJoystick({dx:1,dy:0})"  ontouchend="stopJoystick()" onmousedown="startJoystick({dx:1,dy:0})"  onmouseup="stopJoystick()">▶</button>
+        </div>
+        <button class="joy-btn joy-down"  ontouchstart="startJoystick({dx:0,dy:1})"  ontouchend="stopJoystick()" onmousedown="startJoystick({dx:0,dy:1})"  onmouseup="stopJoystick()">▼</button>
+      </div>
+      <button class="joy-action-btn" onclick="triggerZoneAction(state.explore.activeZone)">Masuk!</button>
+    </div>
+  </div>
+
+  <!-- Legenda -->
+  <div class="exp-legend">
+    <span>🌳 Hutan</span><span>🌊 Laut</span><span>🏜️ Sabana</span>
+    <span>🌿 Rawa</span><span>⛰️ Gunung</span><span>🏞️ Sungai</span>
+    <span>🌴 Mangrove</span><span>🌵 Gurun</span><span>🎋 Bambu</span><span>🧊 Arktik</span>
+  </div>
 </div>
 
 <script src="game.js"></script>
